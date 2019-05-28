@@ -7,21 +7,20 @@ public class Main {
   //main method
   public static void main(String [] args){
     //test cases for pluralize
-    // int dogCount = 1;
-    // System.out.println("I own " + dogCount + " " + pluralize("dog", dogCount) + ".");
+    int dogCount = 1;
+    System.out.println("I own " + dogCount + " " + pluralize("dog", dogCount) + ".");
 
-    // int catCount = 2;
-    // System.out.println("I own " + catCount + " " + pluralize("cat", catCount) + ".");
+    int catCount = 2;
+    System.out.println("I own " + catCount + " " + pluralize("cat", catCount) + ".");
 
-    // int turtleCount = 0;
-    // System.out.println("I own " + turtleCount + " " + pluralize("turtle", turtleCount) + ".");
+    int turtleCount = 0;
+    System.out.println("I own " + turtleCount + " " + pluralize("turtle", turtleCount) + ".");
 
     //test cases for flipHeads
-    // flipHeads(1);
-    // flipHeads(2);
+    flipHeads(1);
+    flipHeads(2);
 
     //test case for commandline clock feature
-    //System.out.println( displayTimeEverySecond() );
     displayTimeEverySecond();
   }
 
@@ -35,6 +34,7 @@ public class Main {
     }
   }
 
+  //counts the amount of flips to get n number of heads in a row
   public static void flipHeads(int num){
     Random r = new Random();
     float randNum = 2; //inital value to track and ensure it is changed
@@ -66,6 +66,7 @@ public class Main {
 
   }
 
+  //display time every second infinitely
   public static void displayTimeEverySecond(){
     String pattern = "HH:mm:ss";
     String prevTimeStamp = "";
