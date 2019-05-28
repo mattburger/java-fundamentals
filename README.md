@@ -1,6 +1,6 @@
 # java-fundamentals
 
-##What's inside
+## What's inside
 -LICENSE
 -.gitignore
 -this README
