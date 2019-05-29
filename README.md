@@ -5,4 +5,5 @@
 - .gitignore
 - this README
 - basics directory
-* [Main.java inside of basics](https://github.com/mattburger/java-fundamentals/tree/master/basics)
+* [Lab 1](https://github.com/mattburger/java-fundamentals/tree/master/basics)
+* [Lab 2](https://github.com/mattburger/java-fundamentals/tree/master/basiclibrary)
