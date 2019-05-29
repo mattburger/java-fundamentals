@@ -7,8 +7,107 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class LibraryTest {
-    @Test public void testSomeLibraryMethod() {
+
+    //dice tests
+    @Test
+    public void testRoll() {
         Library classUnderTest = new Library();
-        assertTrue("someLibraryMethod should return 'true'", classUnderTest.someLibraryMethod());
+        int input = 4;
+        int expectedOutput = 4;
+        assertEquals("rollMethod return array of dice rolls of size n", expectedOutput, classUnderTest.roll(input).length );
     }
+    @Test
+    public void testRoll_noRolls() {
+        Library classUnderTest = new Library();
+        int input = 0;
+        int expectedOutput = 0;
+        assertEquals("rollMethod return array of dice rolls of size n", expectedOutput, classUnderTest.roll(input).length );
+    }
+
+    //duplicates tests
+    @Test
+    public void testContainsDuplicate_duplicates() {
+        Library classUnderTest = new Library();
+        int[] input = new int[]{1, 2, 3, 2, 5};
+        assertTrue(" containsDuplicateMethod should return 'true' if the array has duplicate values and false if not", classUnderTest.containsDuplicate(input));
+    }
+
+    @Test
+    public void testContainsDuplicate_noDuplicates() {
+        Library classUnderTest = new Library();
+        int[] input = new int[]{1, 2, 3, 4, 5};
+        assertFalse(" containsDuplicateMethod should return 'true' if the array has duplicate values and false if not", classUnderTest.containsDuplicate(input));
+    }
+
+    @Test
+    public void testContainsDuplicate_oneElement() {
+        Library classUnderTest = new Library();
+        int[] input = new int[]{1};
+        assertFalse(" containsDuplicateMethod should return 'true' if the array has duplicate values and false if not", classUnderTest.containsDuplicate(input));
+    }
+
+    @Test
+    public void testContainsDuplicate_empty() {
+        Library classUnderTest = new Library();
+        int[] input = new int[0];
+        assertFalse(" containsDuplicateMethod should return 'true' if the array has duplicate values and false if not", classUnderTest.containsDuplicate(input));
+    }
+
+    //averages tests
+    @Test
+    public void testCalculateAverages() {
+        Library classUnderTest = new Library();
+        int[] input = new int[]{5, 5, 5, 5, 5};
+        int expectedOutput = 5;
+        assertEquals("calculateAverages should return the average of all the values in the array", expectedOutput, classUnderTest.calculateAverages(input) );
+    }
+
+    @Test
+    public void testCalculateAverages_oneItem() {
+        Library classUnderTest = new Library();
+        int[] input = new int[]{5};
+        int expectedOutput = 5;
+        assertEquals("calculateAverages should return the average of all the values in the array", expectedOutput, classUnderTest.calculateAverages(input) );
+    }
+
+   @Test
+    public void testCalculateAverages_empty() {
+        Library classUnderTest = new Library();
+        int[] input = new int[0];
+        int expectedOutput = 0;
+        assertEquals("calculateAverages should return 0", expectedOutput, classUnderTest.calculateAverages(input) );
+    }
+
+    //2d arr avg tests
+    @Test
+    public void testTwoDAvg() {
+        Library classUnderTest = new Library();
+        int[][] input = {
+                {6, 4, 5, 6, 1, 5, 6},
+                {5, 5, 6, 0, 7, 6, 5},
+                {55, 54, 60, 53, 59, 57, 61},
+                {85, 96, 65, 82, 95, 52, 87}
+        };
+        int[] expectedOutput = {85, 96, 65, 82, 95, 52, 87};
+        assertArrayEquals("twoDAvg should return the array with the highest average ", expectedOutput, classUnderTest.twoDAvg(input));
+    }
+
+    @Test
+    public void testTwoDAvg_oneElement() {
+        Library classUnderTest = new Library();
+        int[][] input = {
+                {6, 4, 5, 6, 1, 5, 6}
+        };
+        int[] expectedOutput = {6, 4, 5, 6, 1, 5, 6};
+        assertArrayEquals("twoDAvg should return the only array", expectedOutput, classUnderTest.twoDAvg(input));
+    }
+
+    @Test
+    public void testTwoDAvg_empty() {
+        Library classUnderTest = new Library();
+        int[][] input = new int[0][0];
+        int[] expectedOutput = new int [1];
+        assertArrayEquals("twoDAvg should return empty array", expectedOutput, classUnderTest.twoDAvg(input));
+    }
+
 }

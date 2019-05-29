@@ -3,8 +3,83 @@
  */
 package basiclibrary;
 
+import java.util.HashSet;
+import java.util.Random;
+import java.util.Set;
+
 public class Library {
     public boolean someLibraryMethod() {
         return true;
+    }
+
+    public int[] roll(int n){
+        Random r = new Random();
+        int[] result = new int[n];
+        int roll;
+
+        for(int i = 0; i < n; i++){
+            roll = 1 + r.nextInt(7);
+            result[i] = roll;
+        }
+
+        return result;
+    }
+
+    public boolean containsDuplicate(int[] inputArr){
+        Set<Integer> set = new HashSet<>();
+        boolean flag = false;
+
+        for(int i = 0; i < inputArr.length; i++){
+            if( !set.add(inputArr[i]) ) {
+                flag = true;
+            }
+        }
+        return flag;
+    }
+
+    public int calculateAverages(int[] inputArr){
+        int total = 0;
+        if(inputArr.length < 1){
+            return total;
+        }
+        else {
+            for (int element : inputArr) {
+                total += element;
+            }
+
+            return (total / inputArr.length);
+        }
+
+    }
+
+    public int[] twoDAvg(int[][] inputArr){
+        double[] averages = new double[inputArr.length];
+
+        if(inputArr.length < 1){
+            return new int[]{0};
+        }
+
+        if(inputArr.length == 1){
+            return inputArr[0];
+        }
+
+        for(int i = 0; i < inputArr.length; i++){
+            for(int j = 0; j < inputArr[i].length; j++){
+                averages[i] += inputArr[i][j];
+            }
+        }
+        for(int i = 0; i < averages.length; i++){
+            averages[i] = averages[i]/inputArr[i].length;
+        }
+
+        double prev = averages[0];
+        int indexOfHighest = 0;
+        for(int i = 1; i < averages.length; i++){
+            if(averages[i] > prev){
+                indexOfHighest = i;
+            }
+            prev = averages[i];
+        }
+        return inputArr[indexOfHighest];
     }
 }
