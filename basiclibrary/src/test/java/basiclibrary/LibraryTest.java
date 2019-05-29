@@ -84,12 +84,12 @@ public class LibraryTest {
         Library classUnderTest = new Library();
         int[][] input = {
                 {6, 4, 5, 6, 1, 5, 6},
-                {5, 5, 6, 0, 7, 6, 5},
+                {5, 2, 3, 0, 1, 1, 6},
                 {55, 54, 60, 53, 59, 57, 61},
                 {85, 96, 65, 82, 95, 52, 87}
         };
-        int[] expectedOutput = {85, 96, 65, 82, 95, 52, 87};
-        assertArrayEquals("twoDAvg should return the array with the highest average ", expectedOutput, classUnderTest.twoDAvg(input));
+        int[] expectedOutput = {5, 2, 3, 0, 1, 1, 6};
+        assertArrayEquals("twoDAvg should return the array with the lowest average ", expectedOutput, classUnderTest.twoDAvg(input));
     }
 
     @Test

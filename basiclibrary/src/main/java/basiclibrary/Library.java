@@ -73,13 +73,13 @@ public class Library {
         }
 
         double prev = averages[0];
-        int indexOfHighest = 0;
+        int indexOfLowest = 0;
         for(int i = 1; i < averages.length; i++){
-            if(averages[i] > prev){
-                indexOfHighest = i;
+            if(averages[i] < prev){
+                indexOfLowest = i;
             }
             prev = averages[i];
         }
-        return inputArr[indexOfHighest];
+        return inputArr[indexOfLowest];
     }
 }
