@@ -3,9 +3,7 @@
  */
 package basiclibrary;
 
-import java.util.HashSet;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
 
 public class Library {
     public boolean someLibraryMethod() {
@@ -25,6 +23,7 @@ public class Library {
         return result;
     }
 
+    //function checks if an array has duplicates
     public boolean containsDuplicate(int[] inputArr){
         Set<Integer> set = new HashSet<>();
         boolean flag = false;
@@ -37,6 +36,7 @@ public class Library {
         return flag;
     }
 
+    //calculate average of values in array
     public int calculateAverages(int[] inputArr){
         int total = 0;
         if(inputArr.length < 1){
@@ -52,6 +52,7 @@ public class Library {
 
     }
 
+    //calculate averages of each array withing the 2d array returning the lowest average
     public int[] twoDAvg(int[][] inputArr){
         double[] averages = new double[inputArr.length];
 
@@ -81,5 +82,111 @@ public class Library {
             prev = averages[i];
         }
         return inputArr[indexOfLowest];
+    }
+
+    //analyzes 2d array of weather data and returns the following: min, max and
+    // missing values between min and max not seen within the data
+    public String analyzeWeather(int[][] inputArr){
+
+        //initialize to values that shouldn't be possible data results
+        int min = 90001; //IT'S OVER 9000!!!!
+        int max = -9001; //IT'S not over 9000....
+        String output = "";
+
+        //hash set to store weather data for further analysis
+        HashSet<Integer> weatherTemps = new HashSet<>();
+
+        for(int i = 0; i < inputArr.length; i++){
+            for(int j = 0; j < inputArr[i].length; j++){
+                if(inputArr[i][j] > max){
+                    max = inputArr[i][j];
+                }
+
+                if(inputArr[i][j] < min){
+                    min = inputArr[i][j];
+                }
+
+                //duplicates will be ignored
+                weatherTemps.add(inputArr[i][j]);
+            }
+        }
+
+        // add min and max to output
+        output = String.format("High: %d\nLow: %d\n", max, min);
+
+        //convert hashSet to arrayList and sort it in ascending order
+        List<Integer> arrLsWeatherTemps = new ArrayList<>(weatherTemps);
+        Collections.sort(arrLsWeatherTemps);
+
+        //check if min and max are equal
+        if(max == min){
+            return output;
+        }
+
+        else {
+            //create of range of reference utilizing min and max
+            int flag = 0; //track in there was a match
+            for (int i = min; i <= max; i++) {
+                for (int t : arrLsWeatherTemps) {
+                    if (t == i) {
+                        flag = 1;
+                    }
+                }
+                if (flag < 1) {
+                    output = output + String.format("Never saw temperature: %d\n", i);
+                }
+                flag = 0;
+            }
+
+            //faster, but doesn't account for gaps in sequence bigger than 1... so it's useless
+//        int prev = -9001;
+//        int tmp = -90001;
+//        for(int t : arrLsWeatherTemps){
+//            tmp = prev + 1;
+//            if(prev == -9001){
+//                prev = t;
+//            }
+//            else if( t == tmp ){
+//                prev = t;
+//            }
+//            else{
+//                output = output + String.format("Never saw temperature: %d\n", tmp );
+//                prev = t;
+//            }
+//        }
+            return output;
+        }
+    }
+
+    //tally votes
+    public String tally(List<String> input){
+        HashMap<String, Integer> voteTally = new HashMap<>();
+        String winner = "";
+        Integer max = -1; // used to find winner. No element should have negative votes in this use case
+
+
+        for(String el : input){
+            if (voteTally.containsKey(el) ){
+                int currCount = voteTally.get(el);
+                voteTally.put(el, currCount + 1);
+            }
+
+            else{
+                voteTally.put(el, 0);
+            }
+        }
+
+        //thanks to Cyril N. of StackOverflow
+        for(Map.Entry<String, Integer> entry : voteTally.entrySet()) {
+            String key = entry.getKey();
+            Integer value = entry.getValue();
+            if(value > max){
+                max = value;
+                winner = key;
+            }
+        }
+
+        String output = winner + " received the most votes!";
+        return output;
     }
 }
