@@ -3,6 +3,9 @@
  */
 package basiclibrary;
 
+import com.google.errorprone.annotations.FormatString;
+
+import java.io.*;
 import java.util.*;
 
 public class Library {
@@ -188,5 +191,44 @@ public class Library {
 
         String output = winner + " received the most votes!";
         return output;
+    }
+
+    //linter
+    public String jsLinter(String path) {
+        int lineNumber = 0;
+        int errorNumber = 0;
+        String outputMessage = "";
+        File fileToRead = new File(path);
+        ArrayList<Integer> errorList = new ArrayList<>();
+
+        try{
+            Scanner jsScanner = new Scanner(fileToRead);
+
+            while(jsScanner.hasNextLine()){
+                ++lineNumber;
+                String checkLine = jsScanner.nextLine();
+
+                if( ( !checkLine.startsWith("//") && !checkLine.endsWith("{") && !checkLine.endsWith("}") && !checkLine.isEmpty() & !checkLine.contains("if") && !checkLine.contains("else") ) && !checkLine.endsWith(";") ){
+                    errorList.add(lineNumber);
+                    ++errorNumber;
+                }
+
+            }
+            if(errorNumber > 0){
+                for(Integer el : errorList){
+                    outputMessage = outputMessage + String.format("Line %d missing a semicolon.\n", el);
+                }
+                return outputMessage;
+            }
+            else{
+                return "No errors!";
+            }
+
+        }
+        catch(FileNotFoundException err){
+            err.printStackTrace();
+            System.out.println("Uh ohh... Error reading file.");
+            return "Error in using file.";
+        }
     }
 }
