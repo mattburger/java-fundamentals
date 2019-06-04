@@ -41,3 +41,5 @@ Create a Restaurant class and Review class and associate them
     - setters
         - setRestaurantName
     - toString
+# Test
+* [Test code](https://github.com/mattburger/java-fundamentals/blob/master/basiclibrary/src/test/java/inheritance/TestRestaurant.java)
