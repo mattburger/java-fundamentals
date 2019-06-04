@@ -18,14 +18,15 @@ public class LibraryTest {
         Library classUnderTest = new Library();
         int input = 4;
         int expectedOutput = 4;
-        assertEquals("rollMethod return array of dice rolls of size n", expectedOutput, classUnderTest.roll(input).length );
+        assertEquals("rollMethod return array of dice rolls of size n", expectedOutput, classUnderTest.roll(input).length);
     }
+
     @Test
     public void testRoll_noRolls() {
         Library classUnderTest = new Library();
         int input = 0;
         int expectedOutput = 0;
-        assertEquals("rollMethod return array of dice rolls of size n", expectedOutput, classUnderTest.roll(input).length );
+        assertEquals("rollMethod return array of dice rolls of size n", expectedOutput, classUnderTest.roll(input).length);
     }
 
     //duplicates tests
@@ -63,7 +64,7 @@ public class LibraryTest {
         Library classUnderTest = new Library();
         int[] input = new int[]{5, 5, 5, 5, 5};
         int expectedOutput = 5;
-        assertEquals("calculateAverages should return the average of all the values in the array", expectedOutput, classUnderTest.calculateAverages(input) );
+        assertEquals("calculateAverages should return the average of all the values in the array", expectedOutput, classUnderTest.calculateAverages(input));
     }
 
     @Test
@@ -71,15 +72,15 @@ public class LibraryTest {
         Library classUnderTest = new Library();
         int[] input = new int[]{5};
         int expectedOutput = 5;
-        assertEquals("calculateAverages should return the average of all the values in the array", expectedOutput, classUnderTest.calculateAverages(input) );
+        assertEquals("calculateAverages should return the average of all the values in the array", expectedOutput, classUnderTest.calculateAverages(input));
     }
 
-   @Test
+    @Test
     public void testCalculateAverages_empty() {
         Library classUnderTest = new Library();
         int[] input = new int[0];
         int expectedOutput = 0;
-        assertEquals("calculateAverages should return 0", expectedOutput, classUnderTest.calculateAverages(input) );
+        assertEquals("calculateAverages should return 0", expectedOutput, classUnderTest.calculateAverages(input));
     }
 
     //2d arr avg tests
@@ -110,7 +111,7 @@ public class LibraryTest {
     public void testTwoDAvg_empty() {
         Library classUnderTest = new Library();
         int[][] input = new int[0][0];
-        int[] expectedOutput = new int [1];
+        int[] expectedOutput = new int[1];
         assertArrayEquals("twoDAvg should return empty array", expectedOutput, classUnderTest.twoDAvg(input));
     }
 
@@ -142,7 +143,7 @@ public class LibraryTest {
     }
 
     @Test
-    public void testTally(){
+    public void testTally() {
         Library classUnderTest = new Library();
         List<String> votes = new ArrayList<>();
         votes.add("Bush");
@@ -158,5 +159,88 @@ public class LibraryTest {
         String expectedOutput = "Bush received the most votes!";
 
         assertEquals("Should return a string indicating winner", expectedOutput, classUnderTest.tally(votes));
+    }
+
+    @Test
+    public void testLinter_manyErrors() {
+        Library classUnderTest = new Library();
+        String input = "linter/src/main/resources/gates.js";
+        String expectedOutput = "Line 3 missing a semicolon.\n" +
+                "Line 5 missing a semicolon.\n" +
+                "Line 11 missing a semicolon.\n" +
+                "Line 13 missing a semicolon.\n" +
+                "Line 15 missing a semicolon.\n" +
+                "Line 26 missing a semicolon.\n" +
+                "Line 28 missing a semicolon.\n" +
+                "Line 32 missing a semicolon.\n" +
+                "Line 36 missing a semicolon.\n" +
+                "Line 40 missing a semicolon.\n" +
+                "Line 41 missing a semicolon.\n" +
+                "Line 50 missing a semicolon.\n" +
+                "Line 51 missing a semicolon.\n" +
+                "Line 64 missing a semicolon.\n" +
+                "Line 70 missing a semicolon.\n" +
+                "Line 71 missing a semicolon.\n" +
+                "Line 72 missing a semicolon.\n" +
+                "Line 73 missing a semicolon.\n" +
+                "Line 74 missing a semicolon.\n" +
+                "Line 76 missing a semicolon.\n" +
+                "Line 77 missing a semicolon.\n" +
+                "Line 78 missing a semicolon.\n" +
+                "Line 79 missing a semicolon.\n" +
+                "Line 80 missing a semicolon.\n" +
+                "Line 82 missing a semicolon.\n" +
+                "Line 83 missing a semicolon.\n" +
+                "Line 84 missing a semicolon.\n" +
+                "Line 85 missing a semicolon.\n" +
+                "Line 86 missing a semicolon.\n" +
+                "Line 88 missing a semicolon.\n" +
+                "Line 89 missing a semicolon.\n" +
+                "Line 90 missing a semicolon.\n" +
+                "Line 91 missing a semicolon.\n" +
+                "Line 92 missing a semicolon.\n" +
+                "Line 94 missing a semicolon.\n" +
+                "Line 95 missing a semicolon.\n" +
+                "Line 96 missing a semicolon.\n" +
+                "Line 97 missing a semicolon.\n" +
+                "Line 98 missing a semicolon.\n" +
+                "Line 99 missing a semicolon.\n" +
+                "Line 100 missing a semicolon.\n" +
+                "Line 101 missing a semicolon.\n";
+        assertEquals("Should return a list of linter errors, or a message verifying that there is no errors.", expectedOutput, classUnderTest.jsLinter(input));
+    }
+
+    @Test
+    public void testLinter_noErrors() {
+        Library classUnderTest = new Library();
+        String input = "linter/src/main/resources/test1.js";
+        String expectedOutput = "No errors!";
+        assertEquals("Should return a list of linter errors, or a message verifying that there is no errors.", expectedOutput, classUnderTest.jsLinter(input));
+    }
+
+    @Test
+    public void testLinter_oneErrors() {
+        Library classUnderTest = new Library();
+        String input = "linter/src/main/resources/test2.js";
+        String expectedOutput = "Line 11 missing a semicolon.\n";
+        assertEquals("Should return a list of linter errors, or a message verifying that there is no errors.", expectedOutput, classUnderTest.jsLinter(input));
+    }
+
+    @Test
+    public void testLinter_fewErrors() {
+        Library classUnderTest = new Library();
+        String input = "linter/src/main/resources/test3.js";
+        String expectedOutput = "Line 11 missing a semicolon.\n" +
+                "Line 21 missing a semicolon.\n" +
+                "Line 71 missing a semicolon.\n";
+        assertEquals("Should return a list of linter errors, or a message verifying that there is no errors.", expectedOutput, classUnderTest.jsLinter(input));
+    }
+
+    @Test
+    public void testLinter_empty() {
+        Library classUnderTest = new Library();
+        String input = "linter/src/main/resources/test4.js";
+        String expectedOutput = "No errors!";
+        assertEquals("Should return a list of linter errors, or a message verifying that there is no errors.", expectedOutput, classUnderTest.jsLinter(input));
     }
 }
