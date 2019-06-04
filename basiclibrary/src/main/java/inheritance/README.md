@@ -43,3 +43,4 @@ Create a Restaurant class and Review class and associate them
     - toString
 # Test
 * [Test code](https://github.com/mattburger/java-fundamentals/blob/master/basiclibrary/src/test/java/inheritance/TestRestaurant.java)
+- You can add parameters to the test code to further test other bounds and cases.
