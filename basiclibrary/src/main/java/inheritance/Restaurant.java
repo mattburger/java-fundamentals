@@ -6,6 +6,8 @@ import java.util.List;
 public class Restaurant {
     String name;
     String location;
+    int totalStars;
+    float avgStars;
     List<Employee> restaurantEmployees;
     List<Review> reviewList = new ArrayList<>();
 
@@ -13,6 +15,8 @@ public class Restaurant {
         this.name = name;
         this.location = location;
         this.restaurantEmployees = restaurantEmployees;
+        this.totalStars = 0;
+        this.avgStars = 0;
     }
 //    public Restaurant(String name, String location, List<Employee> restaurantEmployees, Review userReview){
 //        this.name = name;
@@ -29,6 +33,9 @@ public class Restaurant {
         return this.location;
     }
 
+    public float getAvgStars(){
+        return this.avgStars;
+    }
     public List<Employee> getEmployees(){
         return restaurantEmployees;
     }
@@ -38,7 +45,12 @@ public class Restaurant {
     }
 
     public void addReview(Review r){
-        this.reviewList.add(r);
+        if( !this.reviewList.contains(r) ) {
+            r.setRestaurantName(this.name);
+            this.reviewList.add(r);
+            totalStars += r.stars;
+            avgStars = totalStars / reviewList.size();
+        }
     }
     public String toString(){
         return String.format( "This restaurant's name is %s.\nThey are located in %s,\n" +

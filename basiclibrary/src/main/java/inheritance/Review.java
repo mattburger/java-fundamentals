@@ -4,11 +4,12 @@ public class Review {
     String user;
     String userReview;
     String restaurantName;
+    int stars;
 
-    public Review(String user, String userReview, String restaurantName){
+    public Review(String user, String userReview, int stars){
         this.user = user;
         this.userReview = userReview;
-        this.restaurantName = restaurantName;
+        this.stars = stars;
     }
 
     public String getUser(){
@@ -17,6 +18,18 @@ public class Review {
 
     public String getReview(){
         return this.userReview;
+    }
+
+    public String getRestaurantName(){
+        return this.restaurantName;
+    }
+
+    public int getStars(){
+        return this.stars;
+    }
+
+    public void setRestaurantName(String n){
+        this.restaurantName = n;
     }
 
     public String toString(){
