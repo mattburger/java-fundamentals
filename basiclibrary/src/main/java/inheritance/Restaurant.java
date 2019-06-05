@@ -7,8 +7,11 @@ public class Restaurant {
     String name;
     String location;
     int totalStars;
+//    int dollarSigns; //needs to be implemented in this class
     float avgStars;
     List<Employee> restaurantEmployees;
+
+    //refactor to linked list
     List<Review> reviewList = new ArrayList<>();
 
     public Restaurant(String name, String location, List<Employee> restaurantEmployees){
@@ -34,7 +37,7 @@ public class Restaurant {
     }
 
     public float getAvgStars(){
-        return this.avgStars;
+        return totalStars/reviewList.size();
     }
     public List<Employee> getEmployees(){
         return restaurantEmployees;
@@ -44,12 +47,11 @@ public class Restaurant {
         this.restaurantEmployees.add(e);
     }
 
+    //refactor for linked list
     public void addReview(Review r){
         if( !this.reviewList.contains(r) ) {
-            r.setRestaurantName(this.name);
             this.reviewList.add(r);
-            totalStars += r.stars;
-            avgStars = totalStars / reviewList.size();
+            this.totalStars += r.stars;
         }
     }
     public String toString(){
