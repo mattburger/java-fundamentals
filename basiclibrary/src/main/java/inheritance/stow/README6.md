@@ -1,4 +1,4 @@
-# Lab 7
+# Lab 6
 Create a Restaurant class and Review class and associate them
 
 ## Tasks
@@ -41,26 +41,6 @@ Create a Restaurant class and Review class and associate them
     - setters
         - setRestaurantName
     - toString
-  - Class Shop
-    - getters
-      - getName
-      - getDescription
-      - getDollarSigns
-      - getReviewedList
-      - getTotalStars
-    - addReview
-    - checkList
-  - Class Theater
-    - getters
-      - getName
-      - getReviewedList
-      - getMovieList
-      - getTotalStars
-    - addReview
-    - checkList
-  - addMovie
-  - removeMovie
 # Test
-* [Test code]()
+* [Test code](https://github.com/mattburger/java-fundamentals/blob/master/basiclibrary/src/test/java/inheritance/TestRestaurant.java)
 - You can add parameters to the test code to further test other bounds and cases.
-- [Code]()
