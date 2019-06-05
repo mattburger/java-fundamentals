@@ -42,6 +42,10 @@ public class Theater {
 
     }
 
+    public int getListSize(){
+        return this.movieList.size();
+    }
+
     public String toString(){
         List<String> tmp = this.getList();
         Collections.sort(tmp);
