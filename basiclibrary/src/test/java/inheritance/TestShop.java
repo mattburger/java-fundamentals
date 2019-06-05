@@ -14,7 +14,7 @@ public class TestShop {
         assertEquals("both names should be the same", "Da Shop", shop1.getName());
         assertEquals("both descriptions should be the same",
                 "This shop has provided premium service " +
-                        "in the local area for the last 300 years",
+                        "in the local area for the last 300 years.",
                 shop1.getDescription() );
         assertEquals("both dollarSigns should be equal", 3, shop1.getDollarSigns() );
     }
