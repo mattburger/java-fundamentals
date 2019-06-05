@@ -22,4 +22,6 @@ public class TestShop {
         assertEquals("both dollarSigns should be equal", 3, shop1.getDollarSigns() );
         assertEquals("both string values should be equal", expectedOutputConstructor, actualOuputConstructor);
     }
+
+
 }

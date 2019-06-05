@@ -10,6 +10,8 @@ public class Restaurant {
 //    int dollarSigns; //needs to be implemented in this class
     float avgStars;
     List<Employee> restaurantEmployees;
+
+    //refactor to linked list
     List<Review> reviewList = new ArrayList<>();
 
     public Restaurant(String name, String location, List<Employee> restaurantEmployees){
@@ -45,6 +47,7 @@ public class Restaurant {
         this.restaurantEmployees.add(e);
     }
 
+    //refactor for linked list
     public void addReview(Review r){
         if( !this.reviewList.contains(r) ) {
             this.reviewList.add(r);
