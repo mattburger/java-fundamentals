@@ -7,6 +7,7 @@ public class Restaurant {
     String name;
     String location;
     int totalStars;
+//    int dollarSigns; //needs to be implemented in this class
     float avgStars;
     List<Employee> restaurantEmployees;
     List<Review> reviewList = new ArrayList<>();
@@ -46,10 +47,9 @@ public class Restaurant {
 
     public void addReview(Review r){
         if( !this.reviewList.contains(r) ) {
-            r.setRestaurantName(this.name);
             this.reviewList.add(r);
-            totalStars += r.stars;
-            avgStars = totalStars / reviewList.size();
+            this.totalStars += r.stars;
+            this.avgStars = totalStars / reviewList.size();
         }
     }
     public String toString(){

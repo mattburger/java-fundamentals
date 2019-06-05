@@ -3,13 +3,15 @@ package inheritance;
 public class Review {
     String user;
     String userReview;
-    String restaurantName;
+//    String restaurantName;
+    Restaurant restaurant;
     int stars;
 
-    public Review(String user, String userReview, int stars){
+    public Review(String user, String userReview, int stars, Restaurant restaurant){
         this.user = user;
         this.userReview = userReview;
         this.stars = stars;
+        this.restaurant = restaurant;
     }
 
     public String getUser(){
@@ -21,20 +23,16 @@ public class Review {
     }
 
     public String getRestaurantName(){
-        return this.restaurantName;
+        return this.restaurant.getName();
     }
 
     public int getStars(){
         return this.stars;
     }
 
-    public void setRestaurantName(String n){
-        this.restaurantName = n;
-    }
-
     public String toString(){
         return String.format("%s posted the following review about %s:\n%s",
-                this.user, this.restaurantName, this.userReview);
+                this.user, this.restaurant.getName(), this.userReview);
     }
 
 }

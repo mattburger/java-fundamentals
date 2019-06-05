@@ -72,7 +72,7 @@ public class TestRestaurant {
         String userName = "clu";
         String userReview = "\"Nothing but perfection!\"";
         int starRating = 5;
-        Review review1 = new Review(userName, userReview, starRating);
+        Review review1 = new Review(userName, userReview, starRating, restaurant1);
         restaurant1.addReview(review1);
 
         assertEquals("restaurant names should be the same", restaurant1.getName(), review1.getRestaurantName());
