@@ -7,6 +7,8 @@ import java.util.HashSet;
 import static org.junit.Assert.*;
 
 public class TestTheater {
+    private final double DELTA = 1e-15;
+    private String revBody = "Nice place!";
 
     public HashSet<String> createMovieList(){
         HashSet<String> movieLs = new HashSet<>();
@@ -14,6 +16,10 @@ public class TestTheater {
             movieLs.add("movie"+i);
         }
         return movieLs;
+    }
+
+    public Review createReview(Theater theater, String revBody, String movie){
+        return new Review("user1", revBody, 5, theater, movie);
     }
 
     public String tNameHelper(){
@@ -67,5 +73,51 @@ public class TestTheater {
         int expectedOutput = 4;
         int actualOutput = theater1.getListSize();
         assertEquals("values should be equal", expectedOutput, actualOutput);
+    }
+
+    @Test
+    public void testTheaterCheckList_empty(){
+        Theater theater1 = new Theater(tNameHelper() + 1, createMovieList());
+        Review review1 = createReview(theater1, revBody, "movie1");
+        String input = review1.toString();
+        boolean output = theater1.checkList(input);
+
+        assertFalse("checking if the review is in a empty list should return false", output);
+    }
+
+    @Test
+    public void testTheaterAddReview_empty(){
+        Theater theater1 = new Theater(tNameHelper() + 1, createMovieList());
+        Review review1 = createReview(theater1, revBody, "movie1");
+        theater1.addReview(review1);
+        int actualOutput = theater1.getReviewListSize();
+        int expectOutput = 1;
+
+        assertEquals("list sizes should be equal", expectOutput, actualOutput);
+    }
+
+    @Test
+    public void testTheaterCheckList_notEmpty(){
+        Theater theater1 = new Theater(tNameHelper() + 1, createMovieList());
+        Review review1 = createReview(theater1, revBody, "movie1");
+        String input = review1.toString();
+        theater1.addReview(review1);
+        boolean output = theater1.checkList(input);
+
+        assertTrue("should return true", output);
+    }
+
+    @Test
+    public void testTheaterAvgStars(){
+        Theater theater1 = new Theater(tNameHelper() + 1, createMovieList());
+
+        for(int i = 0; i < 5; i++){
+            theater1.addReview( createReview(theater1, revBody + i, "movie" + 1) );
+        }
+
+        double actualOutput = theater1.getTotalStars()/theater1.getReviewListSize();
+        double expectOutput = 5.0;
+
+        assertEquals("values should be equal", expectOutput, actualOutput, DELTA);
     }
 }

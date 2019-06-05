@@ -3,6 +3,7 @@ package inheritance;
 public class Review {
     String user;
     String body;
+    String movie;
     Restaurant restaurant;
     Shop shop;
     Theater theater;
@@ -25,11 +26,12 @@ public class Review {
     }
 
     //constructor for Theater reviews
-    public Review(String user, String body, int stars, Theater theater){
+    public Review(String user, String body, int stars, Theater theater, String movie){
         this.user = user;
         this.body = body;
         this.stars = stars;
         this.theater = theater;
+        this.movie = movie;
     }
 
     public String getUser(){
@@ -60,8 +62,8 @@ public class Review {
         }
 
         else{
-            return String.format("%s posted the following review about %s:\n%s",
-                    this.user, this.theater.getName(), this.body);
+            return String.format("%s posted the following review about %s (movie viewed - %s):\n%s",
+                    this.user, this.theater.getName(),this.movie, this.body);
         }
     }
 

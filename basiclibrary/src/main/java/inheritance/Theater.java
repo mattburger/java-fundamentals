@@ -1,21 +1,22 @@
 package inheritance;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 public class Theater {
     private String name;
     private HashSet<String> movieList = new HashSet<>();
+    private LinkedList reviewList = new LinkedList();
+    private int totalStars;
 
     public Theater(String name){
         this.name = name;
+        this.totalStars = 0;
     }
 
     public Theater(String name, HashSet movieList){
         this.name = name;
         this.movieList = movieList;
+        this.totalStars = 0;
     }
 
     public String getName(){
@@ -46,6 +47,51 @@ public class Theater {
         return this.movieList.size();
     }
 
+    public boolean checkList(String review){
+        if(this.reviewList == null){
+            return false;
+        }
+        else if (this.reviewList.size() == 1){
+            //System.out.println(this.reviewList.getFirst());
+            String tmp = this.reviewList.getFirst().toString();
+            if(tmp.equals(review) ){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+        else{
+            Iterator it = this.reviewList.iterator();
+            while(it.hasNext()){
+                if(it.next().toString().equals(review)){
+                    return true;
+                }
+            }
+            return false;
+        }
+    }
+
+    public void addReview(Review r){
+        if(this.reviewList == null){
+            this.reviewList.add(r);
+        }
+        else if(!checkList(r.toString() ) ){
+            this.reviewList.add(r);
+            this.totalStars += r.stars;
+        }
+        else{
+            throw new IllegalArgumentException("review already exists!");
+        }
+    }
+
+    public int getTotalStars(){
+        return this.totalStars;
+    }
+
+    public int getReviewListSize(){
+        return this.reviewList.size();
+    }
     public String toString(){
         List<String> tmp = this.getList();
         Collections.sort(tmp);
