@@ -49,8 +49,20 @@ public class Review {
     }
 
     public String toString(){
-        return String.format("%s posted the following review about %s:\n%s",
-                this.user, this.restaurant.getName(), this.body);
+        if(this.restaurant != null) {
+            return String.format("%s posted the following review about %s:\n%s",
+                    this.user, this.restaurant.getName(), this.body);
+        }
+
+        else if(this.shop != null ){
+            return String.format("%s posted the following review about %s:\n%s",
+                    this.user, this.shop.getName(), this.body);
+        }
+
+        else{
+            return String.format("%s posted the following review about %s:\n%s",
+                    this.user, this.theater.getName(), this.body);
+        }
     }
 
 }

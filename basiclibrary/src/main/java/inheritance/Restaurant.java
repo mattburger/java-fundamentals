@@ -37,7 +37,7 @@ public class Restaurant {
     }
 
     public float getAvgStars(){
-        return this.avgStars;
+        return totalStars/reviewList.size();
     }
     public List<Employee> getEmployees(){
         return restaurantEmployees;
@@ -52,7 +52,6 @@ public class Restaurant {
         if( !this.reviewList.contains(r) ) {
             this.reviewList.add(r);
             this.totalStars += r.stars;
-            this.avgStars = totalStars / reviewList.size();
         }
     }
     public String toString(){

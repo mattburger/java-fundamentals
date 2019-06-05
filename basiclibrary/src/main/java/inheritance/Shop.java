@@ -9,7 +9,7 @@ public class Shop {
     private String description;
     private int dollarSigns;
     private int totalStars;
-    private LinkedList reviewList;
+    private LinkedList reviewList = new LinkedList();
 
     public Shop(String name, String description, int dollarSigns){
         this.name = name;
@@ -31,7 +31,10 @@ public class Shop {
     }
 
     public void addReview(Review r){
-        if(!checkList(this.reviewList, r.toString())){
+        if(this.reviewList == null){
+            this.reviewList.add(r);
+        }
+        else if(!checkList(r.toString() ) ){
             this.reviewList.add(r);
             this.totalStars += r.stars;
         }
@@ -40,19 +43,37 @@ public class Shop {
         }
     }
 
-    public boolean checkList(LinkedList list, String reviewPost){
-        if(list.getFirst() == null){
+    public boolean checkList(String review){
+        if(this.reviewList == null){
             return false;
         }
+        else if (this.reviewList.size() == 1){
+            //System.out.println(this.reviewList.getFirst());
+            String tmp = this.reviewList.getFirst().toString();
+            if(tmp.equals(review) ){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
         else{
-            Iterator it = list.iterator();
+            Iterator it = this.reviewList.iterator();
             while(it.hasNext()){
-                if(it.next().equals(reviewPost)){
+                if(it.next().toString().equals(review)){
                     return true;
                 }
             }
             return false;
         }
+    }
+
+    public int getReviewListSize(){
+        return this.reviewList.size();
+    }
+
+    public int getTotalStars(){
+        return totalStars;
     }
 
     public String toString(){
