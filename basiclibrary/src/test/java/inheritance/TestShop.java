@@ -23,5 +23,15 @@ public class TestShop {
         assertEquals("both string values should be equal", expectedOutputConstructor, actualOuputConstructor);
     }
 
+    @Test
+    public void testShopcheckList(){
+        Shop shop1 = new Shop("Da Shop", "This shop has provided premium service " +
+                "in the local area for the last 300 years.", 3);
+//        Review review1 = new Review("user1", "Nice shop!",)
+    }
 
+    @Test
+    public void testShopAddReview(){
+
+    }
 }
