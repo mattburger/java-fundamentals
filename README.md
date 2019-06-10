@@ -10,3 +10,7 @@
 - Lab 4 in process of being added
 * [Lab 5](https://github.com/mattburger/data-structures-and-algorithms/tree/master/code401Challenges/src/main/java/code401Challenges)
 * [Lab 6](https://github.com/mattburger/java-fundamentals/tree/master/basiclibrary/src/main/java/inheritance)
+- Lab 7
+- Lab 8
+- Lab 9
+* [Lab10](https://github.com/mattburger/data-structures-and-algorithms/tree/master/code401Challenges/src/main/java/code401Challenges/stackandqueues)
